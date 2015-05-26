@@ -82,15 +82,18 @@ class fixMaxStep extends PluginBase {
       if(!empty($iMaxStep))
       {
         $_SESSION["survey_{$iSurveyId}"]['maxstep']=$iMaxStep;
-        if(!$oSavedControl)
+        if($iSavedStep < $iMaxStep)
         {
-          $oSavedControl=new SavedControl;
-          $oSavedControl->sid=$iSurveyId;
-          $oSavedControl->srid=$iRespondeId;
+            if(!$oSavedControl)
+            {
+              $oSavedControl=new SavedControl;
+              $oSavedControl->sid=$iSurveyId;
+              $oSavedControl->srid=$iRespondeId;
+            }
+            $oSavedControl->saved_thisstep=$iMaxStep;
+            if(!$oSavedControl->save())
+              tracevar($oSavedControl->getErrors());
         }
-        $oSavedControl->saved_thisstep=$iMaxStep;
-        if(!$oSavedControl->save())
-          tracevar($oSavedControl->getErrors());
       }
     }
   }
