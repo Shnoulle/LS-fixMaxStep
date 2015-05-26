@@ -22,8 +22,8 @@
  */
  
 class fixMaxStep extends PluginBase {
-  static protected $description = 'Fixing max step for token persisantce enabled';
-  static protected $name = 'Fix index max step';
+  static protected $description = 'Fixing max step with token persistance enabled and index is set';
+  static protected $name = 'fixMaxStep';
  
   public function __construct(PluginManager $manager, $id) {
     parent::__construct($manager, $id);
